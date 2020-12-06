@@ -1,5 +1,5 @@
 ARG UBUNTU_VERSION=eoan
-FROM ubuntu:$UBUNTU_VERSION
+FROM i386/ubuntu:$UBUNTU_VERSION
 MAINTAINER drpsychick
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -17,6 +17,8 @@ RUN apt-get update \
       curl \
       inotify-tools \
       libpng16-16 \
+      lib32z1 \
+      libstdc++6 \
       python3-cups \
       samba-client \
     && apt-get autoremove -y \
@@ -27,7 +29,8 @@ RUN apt-get update \
 
 # Add brother HL-3040CN support
 ADD https://download.brother.com/welcome/dlf005905/hl3040cnlpr-1.1.2-1.i386.deb /root/
-RUN dpkg -i --force-all /root/hl3040cnlpr-1.1.2-1.i386.deb \
+RUN mkdir -p /var/spool/lpd \
+ && dpkg -i --force-all /root/hl3040cnlpr-1.1.2-1.i386.deb \
  && rm -rf /root/hl3040cnlpr-1.1.2-1.i386.deb
 
 ADD https://download.brother.com/welcome/dlf005907/hl3040cncupswrapper-1.1.2-2.i386.deb /root/
