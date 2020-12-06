@@ -17,8 +17,9 @@ RUN apt-get update \
       curl \
       inotify-tools \
       libpng16-16 \
-      #lib32ncurses5 \
-      #libstdc++6 \
+      libncurses5 \
+      zlib1g \
+      libstdc++6 \
       python3-cups \
       samba-client \
     && apt-get autoremove -y \
