@@ -25,6 +25,15 @@ RUN apt-get update \
     && rm -rf /tmp/* \
     && rm -rf /var/tmp/*
 
+# Add brother HL-3040CN support
+ADD https://download.brother.com/welcome/dlf005905/hl3040cnlpr-1.1.2-1.i386.deb /root/
+RUN dpkg -i --force-all /root/hl3040cnlpr-1.1.2-1.i386.deb \
+ && rm -rf /root/hl3040cnlpr-1.1.2-1.i386.deb
+
+ADD https://download.brother.com/welcome/dlf005907/hl3040cncupswrapper-1.1.2-2.i386.deb /root/
+RUN dpkg -i --force-all /root/hl3040cncupswrapper-1.1.2-2.i386.deb \
+ && rm -rf /root/hl3040cncupswrapper-1.1.2-2.i386.deb
+
 # remove unneeded cups backends
 RUN rm /usr/lib/cups/backend/parallel \
     && rm /usr/lib/cups/backend/serial \
