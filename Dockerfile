@@ -17,7 +17,7 @@ RUN apt-get update \
       curl \
       inotify-tools \
       libpng16-16 \
-      lib32z1 \
+      lib32ncurses5 \
       libstdc++6 \
       python3-cups \
       samba-client \
